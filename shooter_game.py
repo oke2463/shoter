@@ -95,11 +95,11 @@ ship = Player(img_hero, 5, win_height - 100, 80, 100, 10)
 #создание группы спрайтов-врагов
 monsters = sprite.Group()
 for i in range(1, 6):
-   monster = Enemy(img_enemy, randint(80, win_width - 80), -40, 80, 50, randint(1, 5))
+   monster = Enemy(img_enemy, randint(80, win_width - 80), -40, 80, 50, randint(3, 5))
    monsters.add(monster)
 asteroids = sprite.Group()
 for i in range(1, 3):
-   asteroid = Enemy("asteroid.png", randint(80, win_width - 80), -40, 80, 50, randint(1, 5))
+   asteroid = Enemy("asteroid.png", randint(80, win_width - 80), -40, 80, 50, randint(1, 3))
    asteroids.add(asteroid)
 
 bullets = sprite.Group()
@@ -169,14 +169,14 @@ while run:
 
        if life == 0 or max_lost == 8:
             finish = True
-            window.blit(text_lose, (10, 50))
+            window.blit(lose, (10, 50))
 
 
 
        #проверка выигрыша: сколько очков набрали?
        if score >= goal:
            finish = True
-           window.blit(win, (200, 200))
+           window.blit(win, (300, 300))
 
 
 
@@ -185,7 +185,8 @@ while run:
        window.blit(text, (10, 20))
 
 
-       text_lose = font2.render("Пропущено: " + str(lost), 1, (255, 255, 255))
+       text_lose = font2.render("Пропущено: " + str(lost), 1, (200, 200, 200))
+       window.blit(text_lose, (10, 50))
        if life == 3:
            life_color = (0, 150, 0)
        if life == 2:
@@ -194,8 +195,8 @@ while run:
            life_color = (150, 0, 0)
 
         
-       life_text = font1.render('YOUR LIFE' + str(life), True, life_color)
-       window.blit(life_text, (600, 10))
+       life_text = font2.render('YOUR LIFE: ' + str(life), True, life_color)
+       window.blit(life_text, (450, 10))
 
        display.update()
    #бонус: автоматический перезапуск игры
